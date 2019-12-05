@@ -25,7 +25,7 @@ public struct EntityConfig {
     public var detail: DetailViewConfig?
     public var relationshipFilters: [String: RelationshipFilter]
     
-    public init(defaultSortDescriptors: [NSSortDescriptor], summary: SummaryViewConfig, detail: DetailViewConfig? = nil relationshipFilters: [String: RelationshipFilter] = [:]) {
+    public init(defaultSortDescriptors: [NSSortDescriptor], summary: SummaryViewConfig, detail: DetailViewConfig? = nil, relationshipFilters: [String: RelationshipFilter] = [:]) {
         self.defaultSortDescriptors = defaultSortDescriptors
         self.summary = summary
         self.detail = detail
@@ -82,7 +82,7 @@ public struct DetailViewConfig {
     internal var attributeOrder: [String]?
     internal var relationshipOrder: [String]?
     
-    public init(attributeOrder: [String]? = nil, relationshipOrder: [String] = nil) {
+    public init(attributeOrder: [String]? = nil, relationshipOrder: [String]? = nil) {
         self.attributeOrder = attributeOrder
         self.relationshipOrder = relationshipOrder
     }
