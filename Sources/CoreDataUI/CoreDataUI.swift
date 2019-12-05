@@ -22,11 +22,13 @@ public enum RelationshipFilter {
 public struct EntityConfig {
     public var defaultSortDescriptors: [NSSortDescriptor]
     public var summary: SummaryViewConfig
+    public var detail: DetailViewConfig?
     public var relationshipFilters: [String: RelationshipFilter]
     
-    public init(defaultSortDescriptors: [NSSortDescriptor], summary: SummaryViewConfig, relationshipFilters: [String: RelationshipFilter] = [:]) {
+    public init(defaultSortDescriptors: [NSSortDescriptor], summary: SummaryViewConfig, detail: DetailViewConfig? = nil relationshipFilters: [String: RelationshipFilter] = [:]) {
         self.defaultSortDescriptors = defaultSortDescriptors
         self.summary = summary
+        self.detail = detail
         self.relationshipFilters = relationshipFilters
     }
 }
@@ -73,5 +75,15 @@ public struct SummaryViewConfig {
     private func format(pair: (String, Formatter), model: NSManagedObject) -> String? {
         let (key, formatter) = pair
         return formatter.string(for: model.value(forKey: key))
+    }
+}
+
+public struct DetailViewConfig {
+    internal var attributeOrder: [String]?
+    internal var relationshipOrder: [String]?
+    
+    public init(attributeOrder: [String]? = nil, relationshipOrder: [String] = nil) {
+        self.attributeOrder = attributeOrder
+        self.relationshipOrder = relationshipOrder
     }
 }

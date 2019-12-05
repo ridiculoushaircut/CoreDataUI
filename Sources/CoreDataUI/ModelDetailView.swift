@@ -23,8 +23,8 @@ class ModelDetailViewModel<T: NSManagedObject>: ObservableObject {
         self.entity = entity
         self.context = context
         self.attributeModifiers = []
-        self.attributeKeyOrder = attributeKeyOrder
-        self.relationshipKeyOrder = relationshipKeyOrder
+        self.attributeKeyOrder = attributeKeyOrder ?? CoreDataUI.container.entityConfig(for: entity.name!)?.detail?.attributeOrder
+        self.relationshipKeyOrder = relationshipKeyOrder ?? CoreDataUI.container.entityConfig(for: entity.name!)?.detail?.relationshipOrder
 
         let akeys = attributeKeyOrder ?? entity.attributesByName.keys.map { $0 }.sorted()
         let attributes = akeys.map { ($0, entity.attributesByName[$0]!) }
@@ -108,7 +108,11 @@ public struct ModelDetailView<T: NSManagedObject>: View {
     @ObservedObject var viewModel: ModelDetailViewModel<T>
 
     public init(model: T? = nil, entity: NSEntityDescription, context: NSManagedObjectContext, attributeKeyOrder: [String]? = nil, relationshipKeyOrder: [String]? = nil) {
-        self.viewModel = ModelDetailViewModel(model: model, entity: entity, context: context, attributeKeyOrder: attributeKeyOrder, relationshipKeyOrder: relationshipKeyOrder)
+        self.viewModel = ModelDetailViewModel(model: model,
+                                              entity: entity,
+                                              context: context,
+                                              attributeKeyOrder: attributeKeyOrder,
+                                              relationshipKeyOrder: relationshipKeyOrder)
 
     }
     
