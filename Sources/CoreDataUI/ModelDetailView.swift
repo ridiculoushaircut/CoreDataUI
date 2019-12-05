@@ -35,10 +35,9 @@ class ModelDetailViewModel<T: NSManagedObject>: ObservableObject {
             case .integer16AttributeType,
                  .integer32AttributeType,
                  .integer64AttributeType:
-                return AnyAttributeEditor(PickerEditor(label: key,
-                                                           options: ["Foo", "Bar"],
-                                                           key: key,
-                                                           value: model?.value(forKey: key) as? Int ?? 0))
+                return AnyAttributeEditor(NumberEditor(label: key,
+                                                       key: key,
+                                                       value: model?.value(forKey: key) as? NSNumber ?? 0))
             case .decimalAttributeType,
                  .floatAttributeType,
                  .doubleAttributeType:

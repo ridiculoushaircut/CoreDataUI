@@ -37,6 +37,12 @@ public class CoreDataUIContainer {
     
     fileprivate init() {}
     
+    public func register(_ configs: [String: EntityConfig]) {
+        for (key, config) in configs {
+            setEntityConfig(for: key, config: config)
+        }
+    }
+    
     public func setEntityConfig(for entityName: String, config: EntityConfig) {
         entityConfigs[entityName] = config
     }

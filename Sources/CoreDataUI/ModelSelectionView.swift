@@ -37,7 +37,7 @@ struct ModelSelectionView: View {
                                     .opacity(self.selection.contains(object) ? 1.0 : 0.0)
                             }
                         }
-                            .foregroundColor(Color.black)
+                        .foregroundColor(Color(UIColor.label))
                     }
                     .onDelete { self.viewModel.delete($0) }
                 }
