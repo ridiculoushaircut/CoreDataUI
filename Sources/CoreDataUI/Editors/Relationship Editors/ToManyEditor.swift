@@ -32,10 +32,10 @@ class ToManyEditor: ToManyEditing, ObservableObject {
             let inverse = relationship.inverseRelationship,
             let filter = CoreDataUI.container.entityConfig(for: editedModel.entity.name!)?.relationshipFilters[relationship.name] else { return nil }
         
-        switch filter {
-        case .all:
-            
-        }
+//        switch filter {
+//        case .all:
+//            
+//        }
         let inverseKey = inverse.name
         if inverse.isToMany {
             return NSPredicate(format: "%@ in %K", argumentArray: [editedModel, inverseKey])
